@@ -4,7 +4,7 @@
 
 > Designers don't necessarily code and 3Dfolio is built with that in mind.
 
-3Dfolio comes with pre configured [GraphCMS](https://graphcms.com/) content model so that you can just forget about the code and manage your entire content from GraphCMS's intuitive dashboard. You can also see a demo video very soon about how you can get started with **3Dfolio** and **GraphCMS**. 
+3Dfolio comes with pre configured [GraphCMS](https://graphcms.com/) content model so that you can just forget about the code and manage your entire content from GraphCMS's intuitive dashboard. You can also see a demo video **very soon** about how you can get started with **3Dfolio** and **GraphCMS**. 
 
 ## Built with:
 - [Next.js](https://nextjs.org/)
