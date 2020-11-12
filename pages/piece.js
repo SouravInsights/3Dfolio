@@ -1,6 +1,26 @@
 import React, { useRef, useState, Suspense } from "react";
-import { Canvas, useLoader } from "react-three-fiber";
+import {
+  Canvas,
+  useLoader,
+  extend,
+  useThree,
+  useFrame,
+} from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+extend({ OrbitControls });
+
+const Controls = () => {
+  const orbitRef = useRef();
+  const { camera, gl } = useThree();
+
+  useFrame(() => {
+    orbitRef.current.update();
+  });
+
+  return <orbitControls args={[camera, gl.domElement]} ref={orbitRef} />;
+};
 
 function Loading() {
   return (
@@ -32,10 +52,12 @@ const Piece = (props) => {
   );
 };
 
-const BirdsPage = () => {
+const Models = () => {
   return [
-    <Canvas style={{ background: "#171717" }}>
+    <Canvas>
+      <ambientLight intensity={0.75} />
       <directionalLight intensity={0.5} />
+      <Controls />
       <Suspense fallback={<Loading />}>
         <Piece />
       </Suspense>
@@ -43,4 +65,4 @@ const BirdsPage = () => {
   ];
 };
 
-export default BirdsPage;
+export default Models;
