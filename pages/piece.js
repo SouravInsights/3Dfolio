@@ -6,12 +6,16 @@ import {
   useThree,
   useFrame,
 } from "react-three-fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+/* import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"; */
+/* import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"; */
 
-extend({ OrbitControls });
+let GLTFLoader;
+let OrbitControls;
 
 const Controls = () => {
+  OrbitControls = require("three/examples/jsm/controls/OrbitControls")
+    .OrbitControls;
+  extend({ OrbitControls });
   const orbitRef = useRef();
   const { camera, gl } = useThree();
 
@@ -32,12 +36,13 @@ function Loading() {
 }
 
 const Piece = (props) => {
+  GLTFLoader = require("three/examples/jsm/loaders/GLTFLoader").GLTFLoader;
   const [model, setModel] = useState();
-  useEffect(() => {
-    new GLTFLoader().load("glb/scene.gltf", setModel);
-  });
-  console.log(model);
-  return model ? <primitive object={model.scene} /> : null;
+
+  const gltf = useLoader(GLTFLoader, "glb/scene.gltf");
+
+  console.log(gltf);
+  return gltf ? <primitive object={gltf.scene} /> : null;
 };
 
 const Models = () => {
@@ -46,9 +51,9 @@ const Models = () => {
       <ambientLight />
       <spotLight castShadow penumbra={1} position={[0, 5, 10]} />
       <Controls />
-      {/* <Suspense fallback={<Loading />}> */}
-      <Piece />
-      {/*  </Suspense> */}
+      <Suspense fallback={<Loading />}>
+        <Piece />
+      </Suspense>
     </Canvas>,
   ];
 };
