@@ -15,11 +15,11 @@ h1 {
   display: flex;
   justify-content: center;
   align-content: center;
-  color: hotpink;
+  color: rgb(46, 67, 255);
 }
 
 .main {
-  background: hotpink;
+  background: rgb(46, 67, 255);
   padding: 50px;
   border-radius: 4px;
   display: flex;
